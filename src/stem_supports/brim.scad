@@ -23,6 +23,11 @@ module brim_support(stem_type, stem_support_height, slop) {
       cylinder(d=$rounded_cherry_stem_d * 2, h=stem_support_height);
       inside_cherry_cross($stem_inner_slop);
     }
+  } else if (stem_type == "topre") {
+    difference() {
+      cylinder(d=$topre_stem_d * 2, h=stem_support_height);
+      inside_topre_vertical($stem_inner_slop);
+    }
   } else if (stem_type == "box_cherry") {
     difference() {
       linear_extrude(height = stem_support_height){

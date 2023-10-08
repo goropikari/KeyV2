@@ -77,7 +77,7 @@ module dished(depth_difference = 0, inverted = false) {
 // just to DRY up the code
 // TODO is putting special vars in function signatures legal
 module _dish(inverted=$inverted_dish) {
-  translate([$dish_offset_x,0,0]) color($secondary_color) 
+  translate([$dish_offset_x,0,0]) color($secondary_color)
   dish(top_total_key_width() + $dish_overdraw_width, top_total_key_height() + $dish_overdraw_height, $dish_depth, inverted);
 }
 
@@ -168,6 +168,7 @@ module inner_shape(extra_wall_thickness = 0, extra_keytop_thickness = 0) {
     // if inner_shape is flat, keytop_thickness will be dish_depth less than it should be, since the dish digs in that far.
     // so, we add dish_depth here
     color($primary_color) shape_hull($wall_thickness + extra_wall_thickness, $keytop_thickness + extra_keytop_thickness + $dish_depth, 0);
+    if ($stem_type == "topre") translate([0, 0, -$topre_stem_height]) cylinder(d=$topre_stem_d, h=$topre_stem_height);
   } else {
     shape($wall_thickness + extra_wall_thickness, $keytop_thickness + extra_keytop_thickness);
   }
@@ -182,6 +183,8 @@ module additive_features(inset) {
   if($outset_legends) legends(0);
   // render the clearance check if it's enabled, but don't have it intersect with anything
   if ($clearance_check) %clearance_check();
+
+  if ($stem_type == "topre") translate([0, 0, -$topre_stem_height]) cylinder(d=$topre_stem_d, h=$topre_stem_height);
 }
 
 // subtractive objects at the top of the key

@@ -23,6 +23,8 @@ function cherry_cross(slop, extra_vertical = 0) = [
   [1.15 + slop / 3, 4.23 + extra_vertical + slop / 3 + SMALLEST_POSSIBLE],
 ];
 
+function topre_vertical(slop, extra_vertical = 0) = [1.15 + slop / 3, 4.23 + extra_vertical + slop / 3 + SMALLEST_POSSIBLE];
+
 // actual mm key width and height
 function total_key_width(delta = 0) = $bottom_key_width + $unit * ($key_length - 1) - delta;
 function total_key_height(delta = 0) = $bottom_key_height + $unit * ($key_height - 1) - delta;

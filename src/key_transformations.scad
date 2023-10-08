@@ -127,6 +127,12 @@ module choc(slop = 0.05) {
   children();
 }
 
+module topre(slop = undef) {
+  $stem_slop = slop != undef ? slop : $stem_slop;
+  $stem_type = "topre";
+  children();
+}
+
 // a hacky way to make "low profile" keycaps
 module low_profile() {
   $width_difference = $width_difference / 1.5;
@@ -206,7 +212,7 @@ module sideways() {
  * then we extend the line created by the slope of the keytop to that line
  * the angle of the latter line off the ground is $top_tilt, and
  * you can create a right triangle with the adjacent edge being $bottom_key_height/2
- * raised up $total_depth. this gets you x, the component of the extended 
+ * raised up $total_depth. this gets you x, the component of the extended
  * keytop slope line, and y, a component of the first perpendicular line.
  * by a very similar triangle you get r and s, where x is the hypotenuse of that
  * right triangle and the right angle is again against the first perpendicular line
@@ -229,7 +235,7 @@ module backside() {
   s = cos(-$top_tilt) * x;
 
   q = atan2(s, (y + b - r));
-  
+
   translate([0,0,cos(q) * total_key_height()/2])
     rotate([-90 - q, 0,0]) children();
 }

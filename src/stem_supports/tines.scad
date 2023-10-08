@@ -3,7 +3,7 @@ include <../stems/cherry.scad>
 
 /* NOTE: every reference to total_key_width and total_key_height
  * is multiplied by two in order to account for offset stems
- */ 
+ */
 module centered_tines(stem_support_height) {
   if ($key_length < 2) {
     translate([0,0,$stem_support_height / 2]) {
@@ -74,6 +74,12 @@ module tines_support(stem_type, stem_support_height, slop) {
       centered_tines(stem_support_height);
 
       inside_cherry_cross($stem_inner_slop);
+    }
+  } else if (stem_type == "topre") {
+    difference () {
+      centered_tines(stem_support_height);
+
+      inside_topre_vertical($stem_inner_slop);
     }
   } else if (stem_type == "alps"){
     centered_tines(stem_support_height);

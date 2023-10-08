@@ -4,7 +4,7 @@
 $key_length = 1.0; // Range not working in thingiverse customizer atm [1:0.25:16]
 
 // What type of stem you want. Most people want Cherry.
-$stem_type = "cherry";  // [cherry, alps, rounded_cherry, box_cherry, filled, disable]
+$stem_type = "cherry";  // [cherry, alps, rounded_cherry, box_cherry, topre, filled, disable]
 
 // The stem is the hardest part to print, so this variable controls how much 'slop' there is in the stem
 // if your keycaps stick in the switch raise this value
@@ -71,6 +71,10 @@ $stem_throw = 4;
 // Diameter of the outside of the rounded cherry stem
 $rounded_cherry_stem_d = 5.5;
 
+// topre stem parameter. Those are quoted from https://github.com/fernandodeperto/topre_key.
+$topre_stem_d = 5.7; // diameter of stem
+$topre_stem_height = 1.35;
+$topre_stem_thickness = 1;
 
 // How much higher the stem is than the bottom of the keycap.
 // Inset stem requires support but is more accurate in some profiles
@@ -207,7 +211,7 @@ $more_side_sculpting_factor = 0.4;
 // 3d surface settings
 // unused for now
 $3d_surface_size = 20;
-// resolution in each axis. 10 = 10 divisions per x/y = 100 points total. 
+// resolution in each axis. 10 = 10 divisions per x/y = 100 points total.
 // 5 = 20 divisions per x/y
 $3d_surface_step = 1;
 
@@ -228,7 +232,7 @@ cylindrical_surface = function(x,y) (sin(acos(x/$3d_surface_size)));
 spherical_surface = function(x,y) (1 - (x/$3d_surface_size)^2)^0.5 * (1 - (y/$3d_surface_size)^2)^0.5;
 // looks a lot like mt3
 quartic_surface = function(x,y) (1 - (x/$3d_surface_size)^4)^0.5 * (1 - (y/$3d_surface_size)^4)^0.5;
-ripple_surface = function(x,y) cos((x^2+y^2)^0.5 * 50)/4 + 0.75; 
+ripple_surface = function(x,y) cos((x^2+y^2)^0.5 * 50)/4 + 0.75;
 rosenbrocks_banana_surface = function(x,y) (pow(1-(x/$3d_surface_size))^2 + 100 * pow((y/$3d_surface_size)-(x/$3d_surface_size)^2)^2)/200 + 0.1;
 spike_surface = function(x,y) 1/(((x/$3d_surface_size)^2+(y/$3d_surface_size)^2)^0.5) + .01;
 random_surface = function(x,y) sin(rands(0,90,1,x+y)[0]);
@@ -237,7 +241,7 @@ bumps_surface = function(x,y) sin(20*x)*cos(20*y)/3+1;
 $surface_function = bumps_surface; // bumps_surface;
 
 // ripples
-/* 
+/*
 // Rosenbrock's banana
 /* $
 // y=x revolved around the y axis
